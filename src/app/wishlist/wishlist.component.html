@@ -1,0 +1,40 @@
+<app-header></app-header>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5" >
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" *ngIf="wishlist.length>0; else wish">
+            <div class="col mb-5" *ngFor="let i of wishlist">
+                <div class="card h-100 border border-0">
+                    <!-- Product image-->
+                    <img class="card-img-top" src={{i.image}} alt="..."
+                        routerLink="det/1" style="cursor: pointer;"  height="250px"/>
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{i.title}}</h5>
+                            <!-- Product price-->
+                            {{i.price|currency}}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <button class="btn btn-outline-dark flex-shrink-0 mb-2 w-100" type="button" (click)="addCart(i)">
+                            <i class="fa-solid fa-cart-plus me-1"></i>
+                            Add to cart
+                        </button>
+                        <button class="btn btn-outline-dark btn-warning flex-shrink-0 w-100" type="button" (click)="removeWishList(i._id)">
+                            <i class="fa-solid fa-heart-circle-xmark me-1"></i>
+                            WishList
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <ng-template #wish>
+            <p>no products in wishlist</p>
+        </ng-template>
+    </div>
+</section>
